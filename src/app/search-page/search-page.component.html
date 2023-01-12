@@ -1,0 +1,18 @@
+
+<div *ngIf="this.postList | async as posts;else loading">
+    <div class=" pt-5 text-center" style="min-width:68vw">
+        <h3>Showing Results for: {{this.searchQuery}}</h3>
+        <h4>Found {{posts.length}} results</h4>
+    </div>
+    <div *ngFor="let post of posts">
+        <app-post-component [isSearch]="post.similarity" [postId]="post.id"></app-post-component>
+    </div>    
+</div>
+
+<ng-template #loading>
+    <div class="mt-5 d-flex justify-content-center">
+        <div style="width: 3rem; height: 3rem;" class="spinner-border" role="status">
+          <span class="sr-only"></span>
+        </div>
+      </div>
+</ng-template>

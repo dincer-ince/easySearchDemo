@@ -1,0 +1,20 @@
+
+
+<div class="mt-5 container d-flex justify-content-center" >
+    <div class="card" style="min-width: 40vw;">
+        <div class="card-body">
+          <h5 class="card-title">Create New Post</h5>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Title</label>
+            <input [formControl]="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Post</label>
+            <textarea [formControl]="post" class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
+          </div>
+        </div>
+        <div class="card-footer">
+            <button (click)="this.submit()" class="btn btn-secondary">Submit</button>
+        </div>
+      </div>
+</div>

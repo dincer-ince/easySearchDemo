@@ -1,0 +1,13 @@
+<div *ngIf="this.postList.length !=0;else loading"></div>
+<ng-container *ngFor="let post of this.postList">
+<div [routerLink]="['/posts/',post.id]" class="row border-1 border-secondary p-3 border-top hover-grey">
+    <p class="card-text"><i class="bi bi-file-earmark-text-fill"></i> {{post.title}}</p>
+</div>
+</ng-container>
+<ng-template #loading>
+    <div class="mt-5 d-flex justify-content-center">
+        <div style="width: 3rem; height: 3rem;" class="spinner-border" role="status">
+          <span class="sr-only"></span>
+        </div>
+      </div>
+</ng-template>

@@ -1,0 +1,62 @@
+
+<div *ngIf="this.post | async as post; else loading">
+    
+    <div class="pt-5 container d-flex justify-content-center ">
+      
+      <div class="card" style="min-width:68vw;">
+            <div class="card-header d-flex w-100"><h5 class="col">Post {{post.id}}</h5><h6 class="col text-end pe-1" *ngIf="this.isSearch!=0"><i style="font-size: 1.5rem; color: cornflowerblue;" class="bi bi-bezier2"></i>  ~ {{this.isSearch | number:"1.2"}}</h6></div>
+            <div class="card-body">
+              <h5 class="card-title">{{post.title}}</h5>
+              <p class="card-text">{{post.post}}<p>
+            </div>
+            <div class="card-footer text-muted container d-flex " style="max-width:inherit;">
+                <div class="col align-self-center">Number of Words: {{post.numberOfWords}}</div>
+                <div class="col-auto align-self-end text-end">
+                    <button (click)="this.loadSimilarDocs()" class="btn btn-sm btn-secondary">See Similar Posts</button>
+                  </div>
+            </div>
+            <div class="accordion accordion-flush" id="accordionExample">
+            <div *ngIf="this.loadingSimilar">
+              <div class="p-5 d-flex justify-content-center">
+                <div style="width: 3rem; height: 3rem;" class="spinner-border" role="status">
+                  <span class="sr-only"></span>
+                </div>
+              </div>
+            </div>
+            <ng-container *ngFor="let post of (this.similarPostList | async);index as i;">
+                    
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" attr.data-bs-target="#collapse{{post.id}}-{{i}}" aria-expanded="false" attr.aria-controls="collapse{{post.id}}-{{i}}">
+                          <div class="w-100 d-flex pe-4">
+                            <p class="text-muted col">#{{post.id}}     {{post.title}} </p>
+                            <p class="col text-end text-muted" *ngIf="post.similarity!=0">Similarity: {{post.similarity | number: '1.3'}}</p>
+                          </div>
+                             
+                        </button>
+                      </h2>
+                      <div id="collapse{{post.id}}-{{i}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          {{post.post}}
+                        </div>
+                        <div class="p-1 pe-3 accordion-body text-muted text-end border-1 border-top" style="background-color: #f7f7f7; border-color:#cbcbcb">
+                             Number of Words: {{post.numberOfWords}}
+                        </div>
+                      </div>
+                    </div>
+                    
+            </ng-container>
+            </div>
+          </div>
+    </div>
+</div>
+
+
+
+<ng-template #loading>
+    <div class="mt-5 d-flex justify-content-center">
+        <div style="width: 3rem; height: 3rem;" class="spinner-border" role="status">
+          <span class="sr-only"></span>
+        </div>
+      </div>
+</ng-template>
