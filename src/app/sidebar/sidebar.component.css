@@ -1,0 +1,19 @@
+.sidebar-thing {
+    width: 15vw;
+}
+.button-thing {
+    visibility: hidden;
+}
+
+  
+@media (max-width: 62rem){
+    .sidebar-thing {
+      width:100vw;
+      min-width: 100vw;
+    }
+    .button-thing{
+        visibility: visible;
+    }
+    
+
+  }

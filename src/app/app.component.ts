@@ -11,5 +11,11 @@ export class AppComponent {
   constructor(){
   }
   search = new FormControl('');
+
+  route(){
+    var button = document.getElementById("searchRouter");
+    if(button==null) return;
+    button.click();
+  }
   
 }

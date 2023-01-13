@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { postPreview } from '../models/postPreviewModel';
 import { PostService } from '../services/post.service';
@@ -19,7 +19,37 @@ export class SidebarComponent implements OnInit {
   
   ngOnInit(): void {
     this.service.GetPostList();
+    var width = window.visualViewport?.width;
+    
+    if(width != null){
+      if( width < 992 ){
+        var sidebar = document.getElementById("sidebarCollapse")
+        if(sidebar!=null) sidebar.classList.remove("show");
+      }
+    }
+    
+
     
   }
+
+  collapse(){
+    if (window.innerWidth>992){
+      return;
+    }
+    var button = document.getElementById("toggler");
+    if(button==null) return;
+    button.click()
+  }
+
+@HostListener('window:resize', ['$event'])
+onResize(event:any) {
+  var width = event.target.innerWidth;
+  if(width>992){
+    var sidebar = document.getElementById("sidebarCollapse")
+    if(sidebar!=null) sidebar.classList.add("show");
+  }
+}
+
+  
 
 }

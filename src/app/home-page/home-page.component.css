@@ -11,3 +11,12 @@
     width: 400px;
     height: 400px;
   }
+  .main-page{
+    
+  }
+
+  @media (min-width: 62rem){
+    .main-page{
+      max-width: 50vw;
+    }
+  }

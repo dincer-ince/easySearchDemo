@@ -1,20 +1,25 @@
-<div class="container d-flex justify-content-center p-3">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">EasySearch Demo</h5>
-            <h6 class="card-subtitle pb-1 text-muted border-1 border-bottom">Client Application</h6>
-            <p class="card-text mt-1">This demo is a preview of a client application coupled with the easySearch API</p>
+<button id="toggler" class="navbar-toggler button-thing mt-2  " type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="bi bi-list fs-2"></i>
+</button>
+<div class="collapse show collapse-horizontal" id="sidebarCollapse">
+    <div class="container d-flex justify-content-center p-3 sidebar-thing">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">EasySearch Demo</h5>
+                <h6 class="card-subtitle pb-1 text-muted border-1 border-bottom">Client Application</h6>
+                <p class="card-text mt-1">This demo is a preview of a client application coupled with the easySearch API</p>
+            </div>
         </div>
     </div>
+    
+    
+    
+    <div *ngIf="(this.postList | async) as posts">
+    <h5 class="p-3 text-muted"><i class="bi bi-file-text"></i> Posts {{posts.length}}
+    </h5>
+    
+    <app-post-list (click)="this.collapse()" [postList]="posts ?? []"></app-post-list>
+    </div>
+    
+    <h4 class="w-100 text-center pt-4" *ngIf="this.loadFailed | async">Server is unreachable at the moment, please try again</h4>
 </div>
-
-
-
-<div *ngIf="(this.postList | async) as posts">
-<h5 class="p-3 text-muted"><i class="bi bi-file-text"></i> Posts {{posts.length}}
-</h5>
-
-<app-post-list [postList]="posts ?? []"></app-post-list>
-</div>
-
-<h4 class="w-100 text-center pt-4" *ngIf="this.loadFailed | async">Server is unreachable at the moment, please try again</h4>

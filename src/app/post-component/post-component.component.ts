@@ -27,6 +27,7 @@ export class PostComponentComponent implements OnInit {
         this.postId = params['id'];
         this.post = this.service.GetPost(this.postId);
         this.similarPostList = new Observable<post[]>();
+        this.loadingSimilar = false;
 
       }).unsubscribe;
     }
