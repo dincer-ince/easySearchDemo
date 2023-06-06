@@ -9,7 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class PostService {
   constructor(private http: HttpClient) {}
   testurl = 'https://localhost:7041/api/';
-  url = 'https://easysearchapi.azurewebsites.net/api/';
+  url = 'https://easysearchserver.azurewebsites.net/api/';
   urlNoApi = 'https://easysearchapi.azurewebsites.net/';
 
   
@@ -65,7 +65,7 @@ export class PostService {
   }
 
   public queryField(fieldIndex:number, query:string){
-    return this.http.get<post[]>(this.url+"Documents/query/16/"+fieldIndex+"/"+query+"/100");
+    return this.http.get<post[]>(this.url+"Documents/query/16/"+fieldIndex+"/"+query+"/100",this.getHeader());
   }
 
   public upvote(upvotenumber:string,documentId:number){

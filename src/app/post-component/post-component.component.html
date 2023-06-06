@@ -1,8 +1,11 @@
 <div *ngIf="this.post | async as post; else loading">
   <div class="pt-5 container d-flex justify-content-center flex-column gap-3">
-    <div class="card" style="min-width: 68vw">
+    <div class="card" >
       <div class="card-header d-flex w-100">
-        <h5 class="col">Post {{ post.id }}</h5>
+        <div class="col d-flex align-items-center">
+          <h5 class="pt-2">Post {{ post.id }}</h5>
+          <button [routerLink]="['/posts/'+post.id]" *ngIf="this.isSearch!=0" class="btn" ><i class="bi bi-box-arrow-up-right"></i></button>
+        </div>
         <h6 class="col text-end pe-1" *ngIf="this.isSearch != 0">
           <i
             style="font-size: 1.5rem; color: cornflowerblue"
@@ -47,7 +50,7 @@
             (click)="this.loadSimilarDocs()"
             class="btn btn-sm btn-secondary"
           >
-            See Similar Posts
+            Similar Posts
           </button>
         </div>
       </div>
@@ -97,10 +100,12 @@
                 {{ post.rawDocument }}
               </div>
               <div
-                class="p-1 pe-3 accordion-body text-muted text-end border-1 border-top"
+                class="p-1 pe-3 accordion-body text-muted  border-1 border-top d-flex"
                 style="background-color: #f7f7f7; border-color: #cbcbcb"
               >
-                Number of Words: {{ post.numberOfWords }}
+                <button [routerLink]="['/posts/'+post.id]" class="btn">See Post <i class="bi bi-box-arrow-up-right"></i></button>
+                <div class="flex-grow-1"></div>
+                <span>Number of Words: {{ post.numberOfWords }}</span>
               </div>
             </div>
           </div>
